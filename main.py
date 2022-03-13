@@ -68,7 +68,7 @@ vol = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar()]
 
 
 # Text anzeigen
-text = Label(window, text = "Let's make music!", font = ("Comic Sans MS", 20, "bold"),fg = "red", bg = bg_color)
+text = Label(window, text = "Let's make music!", font = ("Calibri", 20, "bold"),fg = "red", bg = bg_color)
 text.pack()
 
 # Rahmen für Tasten
@@ -129,7 +129,7 @@ loop_five.grid(row=4, column=5, padx=10, pady=10)
 
 
 # Statuszeile
-statusbar = Label(window, text="Welcome to Musicplayer", relief=SUNKEN, anchor=W, font=("Calibri", 10, "italic"))
+statusbar = Label(window, text="Welcome to Trackplayer", relief=SUNKEN, anchor=W, font=("Calibri", 10, "italic"))
 statusbar.pack(side=BOTTOM, fill = X)
 
 window.bind('1', playtrack)
