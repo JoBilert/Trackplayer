@@ -16,6 +16,7 @@ def browse_file(c, n):
     global filename
     fn = filedialog.askopenfilename()
     filename[c] = mixer.Sound(fn)
+    filename[c].set_volume(0)
     tracks[c].set(fn)
 
 
@@ -52,7 +53,7 @@ def playLoop(event):
 
 def setVolume(value):
     for v in range(len(vol)):
-        if filename[v] != ("chan"+str(v+1)):
+        if filename[v-1] != ("chan"+str(v)):
             volume = int(vol[v].get())/100
             filename[v].set_volume(volume)
 
@@ -62,13 +63,13 @@ window.geometry("1024x786")
 window.title("Music Player")
 window.configure(background = bg_color)
 
-loops = [StringVar(), StringVar(), StringVar(), StringVar(), StringVar()]
-tracks = [StringVar(), StringVar(), StringVar(), StringVar(), StringVar()]
-vol = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar()]
+loops = [StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar()]
+tracks = [StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar()]
+vol = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar()]
 
 
 # Text anzeigen
-text = Label(window, text = "Let's make music!", font = ("Calibri", 20, "bold"),fg = "red", bg = bg_color)
+text = Label(window, text = "Trackplayer", font = ("Calibri", 20, "bold"),fg = "red", bg = bg_color)
 text.pack()
 
 # Rahmen für Tasten
@@ -86,6 +87,8 @@ load_four = Button(frame, text="Load Track 4", command=lambda: browse_file(3, tr
 load_four.grid(row=1, column=4, padx=10, pady=10)
 load_five = Button(frame, text="Load Track 5", command=lambda: browse_file(4, tracks))
 load_five.grid(row=1, column=5, padx=10, pady=10)
+load_six = Button(frame, text="Load Track 6", command=lambda: browse_file(5, tracks))
+load_six.grid(row=1, column=6, padx=10, pady=10)
 
 #filenames
 file_one = Label(frame, textvariable=tracks[0])
@@ -98,7 +101,8 @@ file_four = Label(frame, textvariable=tracks[3])
 file_four.grid(row=2, column=4, padx=10, pady=10)
 file_five = Label(frame, textvariable=tracks[4])
 file_five.grid(row=2, column=5, padx=10, pady=10)
-
+file_six = Label(frame, textvariable=tracks[5])
+file_six.grid(row=2, column=6, padx=10, pady=10)
 
 # volume sliders
 v_one = Scale(frame, from_=100, to=0, length=200, orient=VERTICAL, variable=vol[0], command=setVolume)
@@ -111,6 +115,8 @@ v_four = Scale(frame, from_=100, to=0, length=200, orient=VERTICAL, variable=vol
 v_four.grid(row=3, column=4, padx=10, pady=10)
 v_five = Scale(frame, from_=100, to=0, length=200, orient=VERTICAL, variable=vol[4], command=setVolume)
 v_five.grid(row=3, column=5, padx=10, pady=10)
+v_six = Scale(frame, from_=100, to=0, length=200, orient=VERTICAL, variable=vol[5], command=setVolume)
+v_six.grid(row=3, column=6, padx=10, pady=10)
 
 
 # loop indicators
@@ -124,7 +130,8 @@ loop_four = Label(frame, textvariable = loops[3])
 loop_four.grid(row=4, column=4, padx=10, pady=10)
 loop_five = Label(frame, textvariable = loops[4])
 loop_five.grid(row=4, column=5, padx=10, pady=10)
-
+loop_six = Label(frame, textvariable = loops[5])
+loop_six.grid(row=4, column=6, padx=10, pady=10)
 
 
 
