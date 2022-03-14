@@ -67,17 +67,17 @@ def add():
         window.bind('<Control-KeyPress-' + str(t + 1) + '>', tracks[t].playLoop)
         window.bind('<Alt-KeyPress-' + str(t + 1) + '>', tracks[t].fade)
 
-
+# Main Program
 window = Tk()
 window.geometry("1024x786")
 window.title("Music Player")
 window.configure(background=bg_color)
 
-# Text anzeigen
+# Headline
 text = Label(window, text="Trackplayer", font=("Calibri", 20, "bold"), fg="red", bg=bg_color)
 text.pack()
 
-# Rahmen für Tasten
+# Frames
 frame = Frame(window, bg=bg_color)
 frame.pack(padx=10, pady=10)
 frame2 = Frame(window, relief=SUNKEN)
@@ -96,7 +96,8 @@ S = Scrollbar(frame2)
 T = Text(frame2, height=10)
 S.pack(side="right", fill=Y)
 T.pack(side="left", fill="both")
-# Statuszeile
+
+# Status
 statusbar = Label(window, text="Welcome to Trackplayer", relief=SUNKEN, anchor=W, font=("Calibri", 10, "italic"))
 statusbar.pack(side=BOTTOM, fill=X)
 
