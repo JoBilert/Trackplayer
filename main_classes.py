@@ -52,7 +52,7 @@ def browse_file():
     fn = filedialog.askopenfilename()
     return fn
 
-
+# Adds Volumesliders and Hotkey-Control
 def add():
     global volume, tracks, frame
     volume = []
