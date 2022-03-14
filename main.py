@@ -63,6 +63,7 @@ window.geometry("1024x786")
 window.title("Music Player")
 window.configure(background = bg_color)
 
+
 loops = [StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar()]
 tracks = [StringVar(), StringVar(), StringVar(), StringVar(), StringVar(), StringVar()]
 vol = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar()]
@@ -72,9 +73,11 @@ vol = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar()]
 text = Label(window, text = "Trackplayer", font = ("Calibri", 20, "bold"),fg = "red", bg = bg_color)
 text.pack()
 
+
 # Rahmen für Tasten
 frame = Frame(window, bg = bg_color)
 frame.pack(padx=10, pady=10)
+
 
 #LoadButtons
 load_one = Button(frame, text="Load Track 1", command=lambda: browse_file(0, tracks))
@@ -90,6 +93,7 @@ load_five.grid(row=1, column=5, padx=10, pady=10)
 load_six = Button(frame, text="Load Track 6", command=lambda: browse_file(5, tracks))
 load_six.grid(row=1, column=6, padx=10, pady=10)
 
+
 #filenames
 file_one = Label(frame, textvariable=tracks[0])
 file_one.grid(row=2, column=1, padx=10, pady=10)
@@ -103,6 +107,7 @@ file_five = Label(frame, textvariable=tracks[4])
 file_five.grid(row=2, column=5, padx=10, pady=10)
 file_six = Label(frame, textvariable=tracks[5])
 file_six.grid(row=2, column=6, padx=10, pady=10)
+
 
 # volume sliders
 v_one = Scale(frame, from_=100, to=0, length=200, orient=VERTICAL, variable=vol[0], command=setVolume)
@@ -132,7 +137,6 @@ loop_five = Label(frame, textvariable = loops[4])
 loop_five.grid(row=4, column=5, padx=10, pady=10)
 loop_six = Label(frame, textvariable = loops[5])
 loop_six.grid(row=4, column=6, padx=10, pady=10)
-
 
 
 # Statuszeile
