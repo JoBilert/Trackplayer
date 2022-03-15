@@ -6,7 +6,7 @@ from pygame import mixer
 # Variables
 counter = 1
 bg_color = "black"
-indcol = "red"
+indcol = ["red", "green"]
 tracks = []
 volume = []
 
