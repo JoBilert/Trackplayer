@@ -6,7 +6,7 @@ from pygame import mixer
 # Variables
 counter = 1
 bg_color = "black"
-indcol = ["red", "green"]
+indcol = "red"
 tracks = []
 volume = []
 
@@ -54,51 +54,64 @@ def browse_file():
 
 # Adds Volumesliders and Hotkey-Control
 def add():
-    global volume, tracks, frame
-    volume = []
+    global volume, tracks, slframe
     vol = []
+    frames = []
     a = IntVar()
+    if len(volume) > 0:
+        for t in range(len(tracks)):
+            volume[t-1].pack_forget()
     for t in range(len(tracks)):
-        volume.append(Scale(frame, from_=100, to=0, length=200, orient=VERTICAL, variable=vol.append(a),
-                            command=tracks[t].setVolume))
-        volume[t].grid(row=3, column=(t + 1), padx=10, pady=10)
+        frames.append(Frame(slframe, border="3px", relief=SUNKEN))
+        frames[t].pack(side=LEFT, padx=5)
+        volume.append(Scale(frames[t], from_=100, to=0, length=200, orient=VERTICAL, variable=vol.append(a), command=tracks[t].setVolume))
+        volume[t].pack(side=LEFT)
         # add hotkeys
         window.bind(str(t + 1), tracks[t].playTrack)
         window.bind('<Control-KeyPress-' + str(t + 1) + '>', tracks[t].playLoop)
         window.bind('<Alt-KeyPress-' + str(t + 1) + '>', tracks[t].fade)
 
+
 # Main Program
 window = Tk()
 window.geometry("1024x786")
-window.title("Music Player")
-window.configure(background=bg_color)
+window.title("TrackPlayer")
+window.resizable(True, True)
+window.maxsize(window.winfo_screenwidth(), window.winfo_screenheight()-100)
 
 # Headline
-text = Label(window, text="Trackplayer", font=("Calibri", 20, "bold"), fg="red", bg=bg_color)
+text = Label(window, text="Trackplayer", font=("Calibri", 20, "bold"), fg="red")
 text.pack()
 
 # Frames
-frame = Frame(window, bg=bg_color)
-frame.pack(padx=10, pady=10)
-frame2 = Frame(window, relief=SUNKEN)
-frame2.pack(side="bottom", padx=10, pady=10, fill=X)
+topframe = Frame(window, width=window.winfo_reqwidth())
+topframe.pack(fill=X)
+bframe = Frame(topframe)
+bframe.pack(side=TOP, padx=10, pady=10)
+slframe = Frame(topframe)
+slframe.pack(side=LEFT, padx=10, pady=10)
+stframe = Frame(window, relief=SUNKEN)
+stframe.pack(side="bottom", padx=10, pady=10, fill=X)
+
 
 # AddTrack
-addTrack = Button(frame, text="Add Track", command=lambda: tracks.append(Track(browse_file())))
-addTrack.grid(row=1, column=1, padx=10, pady=10)
+addTrack = Button(bframe, text="1. Add Track(s)", command=lambda: tracks.append(Track(browse_file())))
+addTrack.pack(pady=5)
 
 # volume sliders
-addSliders = Button(frame, text="Add Volume Sliders", command=lambda: add())
-addSliders.grid(row=1, column=2, padx=10, pady=10)
+addSliders = Button(bframe, text="2. Add Volume Slider(s)", command=lambda: add())
+addSliders.pack(pady=5)
 
 # LogBox
-S = Scrollbar(frame2)
-T = Text(frame2, height=10)
-S.pack(side="right", fill=Y)
-T.pack(side="left", fill="both")
+console = Frame(stframe)
+console.pack(side=TOP, fill=X, pady=2)
+S = Scrollbar(console, width=20)
+T = Text(console, width=window.winfo_reqwidth()-20, height=10)
+S.pack(side=RIGHT, fill=Y)
+T.pack()
 
 # Status
-statusbar = Label(window, text="Welcome to Trackplayer", relief=SUNKEN, anchor=W, font=("Calibri", 10, "italic"))
+statusbar = Label(stframe, text="Welcome to Trackplayer", relief=SUNKEN, anchor=W, font=("Calibri", 10, "italic"))
 statusbar.pack(side=BOTTOM, fill=X)
 
 window.mainloop()
