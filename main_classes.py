@@ -37,9 +37,8 @@ class Track:
         self.soundLoop = True
 
     def setVolume(self, value):
-        test = float(value) / 100
-        print(test)
-        self.sound.set_volume(test)
+        replay_vol = float(value) / 100
+        self.sound.set_volume(replay_vol)
 
     def fade(self, event):
         self.sound.fadeout(5000)
@@ -58,15 +57,20 @@ def add():
     vol = []
     frames = []
     a = IntVar()
+
+    # remove existing sliders
     if len(volume) > 0:
         for t in range(len(tracks)):
             volume[t-1].pack_forget()
+
+    # add a slider for each loaded track
     for t in range(len(tracks)):
         frames.append(Frame(slframe, border="3px", relief=SUNKEN))
         frames[t].pack(side=LEFT, padx=5)
         volume.append(Scale(frames[t], from_=100, to=0, length=200, orient=VERTICAL, variable=vol.append(a), command=tracks[t].setVolume))
         volume[t].pack(side=LEFT)
-        # add hotkeys
+
+        # add hotkeys for each track
         window.bind(str(t + 1), tracks[t].playTrack)
         window.bind('<Control-KeyPress-' + str(t + 1) + '>', tracks[t].playLoop)
         window.bind('<Alt-KeyPress-' + str(t + 1) + '>', tracks[t].fade)
@@ -83,13 +87,16 @@ window.maxsize(window.winfo_screenwidth(), window.winfo_screenheight()-100)
 text = Label(window, text="Trackplayer", font=("Calibri", 20, "bold"), fg="red")
 text.pack()
 
-# Frames
+# Frame for buttons and sliders
 topframe = Frame(window, width=window.winfo_reqwidth())
 topframe.pack(fill=X)
+# Button subframe
 bframe = Frame(topframe)
 bframe.pack(side=TOP, padx=10, pady=10)
+# Sliders subframe
 slframe = Frame(topframe)
 slframe.pack(side=LEFT, padx=10, pady=10)
+# Frame for Logbox and Statusbar
 stframe = Frame(window, relief=SUNKEN)
 stframe.pack(side="bottom", padx=10, pady=10, fill=X)
 
