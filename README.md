@@ -17,7 +17,7 @@ The logbox at the bottom of the windows will show you the number of the track an
 
 When you are finished loading your tracks, click the "2. Add Volume Slider(s)" button and a number of volume slider according to the number of loaded tracks will appear in the center of the window.
 
-<img width="770" alt="image" src="https://user-images.githubusercontent.com/8271443/158756559-eccc0935-1c1a-4c23-b496-c84a3e4a7e34.png">
+<img width="770" alt="image" src="https://user-images.githubusercontent.com/8271443/158758375-907e8999-a5b8-41bf-9036-3f1e412a2776.png">
 
 *You can later add tracks by using the "1. Add Track(s)" button AND the "2. All Volume Slider(s)" again at any time.
 
