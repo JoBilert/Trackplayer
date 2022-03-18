@@ -1,0 +1,24 @@
+<TrackscapeLayout>
+    frame:frame
+    sliders:sliders
+    info:info
+
+    BoxLayout:
+        id: frame
+        orientation: 'vertical'
+        size: root.width, root.height
+        Label:
+            text: 'Trackscape'
+        Button:
+            text: "1. Add Track(s)"
+            on_press: app.addTracks()
+        Button:
+            text: "2. Add Volume Slider(s)"
+            on_press: root.add_Sliders()
+        BoxLayout:
+            orientation: 'horizontal'
+            id: sliders
+        BoxLayout:
+            id: info
+            orientation: 'vertical'
+
