@@ -11,6 +11,8 @@ from pygame import mixer
 
 tracks = [1,2,3]
 volumes = []
+
+
 class TrackscapeLayout(Widget):
     frame = ObjectProperty(None)
     sliders = ObjectProperty(None)
@@ -23,9 +25,6 @@ class TrackscapeLayout(Widget):
         global tracks, volumes
         volumes = []
         for t in range(len(tracks)):
-            volumes.append(self.sliders.add_widget(Slider(min=0,max=100, orientation='vertical')))
-
-
 
 
 class Trackscape(App):
