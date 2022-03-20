@@ -23,8 +23,16 @@ class TrackscapeLayout(Widget):
 
     def add_Sliders(self):
         global tracks, volumes
-        volumes = []
         for t in range(len(tracks)):
+            volumes.append(self.sliders.add_widget(Slider(
+                min=0,
+                max=100,
+                value=50,
+                orientation='vertical',
+                value_track=True,
+                value_track_color=[1,0,0,1]))
+            )
+
 
 
 class Trackscape(App):
